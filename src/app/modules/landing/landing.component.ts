@@ -15,7 +15,7 @@ import { ILocation } from '../../models/location.interface';
 })
 export class LandingComponent {
   constructor(private router: Router) {}
-  public flagsRootPath = '/assets/images/';
+  public flagsRootPath = 'assets/images/';
 
   locations: ILocation[] = [
     {
