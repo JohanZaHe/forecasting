@@ -38,7 +38,6 @@ export class LandingComponent {
 
   viewForecasting({ route, id, lat, lng }: ILocation): void {
     const path = `${route}/${id}/${lat}/${lng}`;
-    console.log(path);
     this.router.navigateByUrl(path);
   }
 }

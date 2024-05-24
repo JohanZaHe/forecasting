@@ -1,3 +1,25 @@
-<div class="chart-container" style="background-color: white;">
-    <canvas #myChart id="MyChart" >{{ chart }}</canvas>
+<div class="container" *ngIf="!showLoading; else loading">
+    <div class="current-forecast-box">
+        <div class="row">
+            <h2>{{ID === 'TOP' ? 'Kansas Forecast':'District of Columbia Forecast'}}</h2>
+            <h2>{{date| date :"MM/dd/yyyy 'at' hh:mm a"}}</h2>
+        </div>
+        <h1 class="current-temperature">{{data[0]?.temperature}}°{{data[0]?.temperatureUnit}}</h1>
+        <p>{{data[0]?.detailedForecast}}</p>
+        <app-line-chart [data]="data"></app-line-chart>
+    </div>
+    <div class="forecasting-box">
+        @for (forecast of data; track forecast.name) {
+        <mat-card>
+            <h2 class="forecast-time">{{forecast.name}}</h2>
+            <h1>{{forecast.temperature}}°{{forecast.temperatureUnit}}</h1>
+            <h2 class="forecast-text">{{forecast.shortForecast}}</h2>
+        </mat-card>
+        }
+    </div>
 </div>
+<ng-template #loading>
+   <div class="loading-item">
+    <mat-spinner></mat-spinner>
+   </div>
+</ng-template>
